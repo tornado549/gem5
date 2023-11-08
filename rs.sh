@@ -9,10 +9,10 @@ set -x
 # llc -filetype=asm $1_pf.ll -o $1_pf.s
 # clang++ $1_pf.o -o $1_pf
 
-clang++ -flegacy-pass-manager -O3 $1.cc -S -emit-llvm -o $1_nopf.ll
-llc -filetype=obj $1_nopf.ll -o $1_nopf.o
-llc -filetype=asm $1_nopf.ll -o $1_nopf.s
-clang++ $1_nopf.o -o $1_nopf
+# clang++ -flegacy-pass-manager -O3 $1.cc -S -emit-llvm -o $1_nopf.ll
+# llc -filetype=obj $1_nopf.ll -o $1_nopf.o
+# llc -filetype=asm $1_nopf.ll -o $1_nopf.s
+# clang++ $1_nopf.o -o $1_nopf
 
 #=================================================================================================
 
@@ -22,7 +22,12 @@ clang++ $1_nopf.o -o $1_nopf
 # llc -filetype=asm $1_pf.ll -o $1_pf.s
 # clang++ $1_pf.o -L${GEM5_HOME}/util/m5/build/x86/out -lm5 -static -o $1_pf_m5
 
-clang++ -flegacy-pass-manager -O3 $1.cc -S -emit-llvm -DMOP -I${GEM5_HOME}/include/ -static -o $1_nopf.ll
-llc -filetype=obj $1_nopf.ll -o $1_nopf.o
-llc -filetype=asm $1_nopf.ll -o $1_nopf.s
-clang++ $1_nopf.o -L${GEM5_HOME}/util/m5/build/x86/out -lm5 -static -o $1_nopf_m5
+# clang++ -flegacy-pass-manager -O3 $1.cc -S -emit-llvm -DMOP -I${GEM5_HOME}/include/ -static -o $1_nopf.ll
+# llc -filetype=obj $1_nopf.ll -o $1_nopf.o
+# llc -filetype=asm $1_nopf.ll -o $1_nopf.s
+# clang++ $1_nopf.o -L${GEM5_HOME}/util/m5/build/x86/out -lm5 -static -o $1_nopf_m5
+
+clang++ -flegacy-pass-manager -DAVX -march=native -O3 $1.cc -S -emit-llvm -DMOP -I${GEM5_HOME}/include/ -static -o $1_pipe.ll
+llc -filetype=obj $1_pipe.ll -o $1_pipe.o
+llc -filetype=asm $1_pipe.ll -o $1_pipe.s
+clang++ $1_pipe.o -L${GEM5_HOME}/util/m5/build/x86/out -lm5 -static -o $1_pipe_m5
