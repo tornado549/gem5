@@ -77,6 +77,20 @@ class L2Cache(Cache):
     tgts_per_mshr = 12
     write_buffers = 8
 
+# https://gem5-users.gem5.narkive.com/OACccVAd/modeling-l3-last-level-cache-in-gem5
+
+# actually!!
+# https://addingl3cacheingem5.blogspot.com/2021/09/l3-cache-into-gem5-simulator-framework.html
+class L3Cache(Cache):
+    assoc = 16
+    tag_latency = 80
+    data_latency = 80
+    response_latency = 80
+    # mshrs = 512
+    mshrs = 32
+    tgts_per_mshr = 20
+    write_buffers = 16
+
 
 class IOCache(Cache):
     assoc = 8

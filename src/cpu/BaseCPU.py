@@ -55,6 +55,8 @@ from m5.objects.ClockDomain import *
 from m5.objects.Platform import Platform
 from m5.objects.ResetPort import ResetResponsePort
 
+from m5.objects.XBar import L3XBar
+
 default_tracer = ExeTracer()
 
 
@@ -222,6 +224,17 @@ class BaseCPU(ClockedObject):
         self.l2cache = l2c
         self.toL2Bus.mem_side_ports = self.l2cache.cpu_side
         self._cached_ports = ["l2cache.mem_side"]
+    
+    def addThreeLevelCacheHierarchy(
+        self, ic, dc, l2c, iwc=None, dwc=None, xbar=None
+    ):
+        self.addTwoLevelCacheHierarchy(ic, dc, iwc, dwc)
+        self.toL3Bus = xbar if xbar else L3XBar()
+        # self.connectCachedPorts(self.toL3Bus.cpu_side_ports)
+        self.connectCachedPorts(self.toL3Bus)
+        self.l3cache = l3c
+        self.toL3Bus.master = self.l3cache.cpu_side
+        self._cached_ports = ["l3cache.mem_side"]
 
     def createThreads(self):
         # If no ISAs have been created, assume that the user wants the
