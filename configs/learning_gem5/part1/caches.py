@@ -25,6 +25,8 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# https://www.gem5.org/documentation/learning_gem5/part1/cache_config/
+
 """ Caches with options for a simple gem5 configuration script
 
 This file contains L1 I/D and L2 caches to be used in the simple
