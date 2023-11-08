@@ -1,3 +1,10 @@
+- 本项目是 gem5 的一个 clone。
+- 首先对 gem5 的 `m5op` 做了一些实验，确定了 stat 的 dump 和 reset 原理
+  - 详情见 `gem5.md`
+- 随后，添加了 `L3 cache` 用于后续的实验
+- 有关 `vr` 和 `loop pipelining` 的实验正在进行...
+
+---
 # The gem5 Simulator
 
 This is the repository for the gem5 simulator. It contains the full source code
