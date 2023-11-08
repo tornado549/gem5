@@ -4,6 +4,16 @@
 - 随后，添加了 `L3 cache` 用于后续的实验
 - 有关 `vr` 和 `loop pipelining` 的实验正在进行...
 
+- 相关 git 分支和远端：
+  - remote wsj 为 ef 内部，暂时不可访问
+  - remote jay 为 github，可用
+- fetch
+  - git fetch jay wsj
+- rebase
+  - git rebase jay/wsj wsj
+- push
+  - git push jay wsj
+
 ---
 # The gem5 Simulator
 
